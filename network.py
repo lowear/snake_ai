@@ -19,7 +19,7 @@ class NeuralNetwork:
 	# single-hidden-layer neural network class
 
 	def __init__(self, qty_inputs, qty_hlayer_nodes, qty_outputs):
-		# initiate neural network with one hidden layer
+		# initiate a randomised neural network with one hidden layer
 		self.qty_inputs = qty_inputs
 		self.qty_hlayer_nodes = qty_hlayer_nodes
 		self.qty_outputs = qty_outputs

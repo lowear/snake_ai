@@ -2,6 +2,7 @@
 game class for neural network visualiser
 """
 
+import sys
 import pygame as pg
 from food import Food
 from genetics import GeneticAlgorithm
@@ -19,36 +20,36 @@ class Game:
 		self.screen = pg.display.set_mode((WIDTH, HEIGHT))
 		pg.display.set_caption(TITLE)
 		self.clock = pg.time.Clock()
-		self.running = True
+		self.gen = 1
+		self.fps = FPS
 
 	def new_simulation(self):
 		# start a new simulation
 		self.genetic_algorithm = GeneticAlgorithm(self, POPULATION_SIZE)
-		for nerual_network in self.genetic_algorithm.population:
-			self.new_game(nerual_network)
+		while True:
+			for nerual_network in self.genetic_algorithm.population:
+				self.new_game(nerual_network)
+			self.genetic_algorithm.selection()
+			self.genetic_algorithm.reproduction()
+			print('next gen')
+			self.gen += 1
 
-		for result in self.genetic_algorithm.results:
-			# print('\nWeights1:')
-			# print(result['weights1'])
-			# print('\nWeights2:')
-			# print(result['weights2'])
-			# print('\nFitness:')
-			print(result['fitness'])
-
-	def new_game(self, nerual_network):
+	def new_game(self, neural_network):
 		# start new game with a new snake
 		self.all_sprites = pg.sprite.Group()
 		self.food = Food(self)
-		self.snake = Snake(self, 10, 10, 3, nerual_network)
+		self.snake = Snake(self, 10, 10, 3, neural_network)
 		self.run()
 
 	def run(self):
 		# game loop
 		while self.snake.alive:
-			self.dt = self.clock.tick(FPS) / 1000
+			self.dt = self.clock.tick(self.fps) / 1000
 			self.events()
 			self.update()
-			self.draw()
+			if self.gen >= 100:
+				self.fps = 60
+				self.draw()
 
 	def update(self):
 		# game loop update
@@ -58,12 +59,12 @@ class Game:
 		# execute game events
 		for event in pg.event.get():
 			if event.type == pg.QUIT:
-				self.running = False
-				self.snake.alive = False
+				pg.quit()
+				sys.exit()
 			if event.type == pg.KEYDOWN:
 				if event.key == pg.K_ESCAPE:
-					self.running = False
-					self.snake.alive = False
+					pg.quit()
+					sys.exit()
 
 	def draw(self):
 		# draw on screen elements:
