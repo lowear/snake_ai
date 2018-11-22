@@ -70,7 +70,7 @@ class Snake():
 		for i in range(INPUTS):
 			input_nodes.append({
 				'pos': (LAYER_IN_X, INPUT_YSTEP *(i+1)),
-				'color': (0, int(255*inputs[i]), 0)
+				'color': (0, max(50, int(255*inputs[i])), 0)
 				})
 
 		hlayer_nodes = []

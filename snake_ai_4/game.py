@@ -84,24 +84,15 @@ class Game:
 
 		genstring = 'Generation: ' + str(self.genetic_algorithm.current_generation)
 		gentext = self.font.render(genstring, False, WHITE)
-		self.screen.blit(gentext,(TOTAL_WIDTH - gentext.get_width(), (GRID_HEIGHT - 5*gentext.get_height())))
+		self.screen.blit(gentext,(TOTAL_WIDTH - gentext.get_width(), (GRID_HEIGHT - 3*gentext.get_height())))
 
 		snakestring = 'Snake: ' + str(self.genetic_algorithm.cur_snake)
 		snaketext = self.font.render(snakestring, False, WHITE)
-		self.screen.blit(snaketext,(TOTAL_WIDTH - snaketext.get_width(), (GRID_HEIGHT - 4*snaketext.get_height())))
+		self.screen.blit(snaketext,(TOTAL_WIDTH - snaketext.get_width(), (GRID_HEIGHT - 2*snaketext.get_height())))
 
 		scorestring = 'Highscore: ' + str(self.genetic_algorithm.highscore)
 		scoretext = self.font.render(scorestring, False, WHITE)
-		self.screen.blit(scoretext,(TOTAL_WIDTH - scoretext.get_width(), (GRID_HEIGHT - 3*scoretext.get_height())))
-
-		unicornstring = 'Unicorns eaten: ' + str(self.genetic_algorithm.unicorns)
-		unicorntext = self.font.render(unicornstring, False, WHITE)
-		self.screen.blit(unicorntext,(TOTAL_WIDTH - unicorntext.get_width(), (GRID_HEIGHT - 2*unicorntext.get_height())))
-
-		dinosaurstring = 'Dinosaurs eaten: ' + str(self.genetic_algorithm.dinosaurs)
-		dinosaurtext = self.font.render(dinosaurstring, False, WHITE)
-		self.screen.blit(dinosaurtext,(TOTAL_WIDTH - dinosaurtext.get_width(), (GRID_HEIGHT - 1*dinosaurtext.get_height())))
-
+		self.screen.blit(scoretext,(TOTAL_WIDTH - scoretext.get_width(), (GRID_HEIGHT - 1*scoretext.get_height())))
 		pg.display.flip()
 
 	def draw_grid(self):

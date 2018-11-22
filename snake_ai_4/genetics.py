@@ -85,8 +85,8 @@ class GeneticAlgorithm:
 						new_weights2,
 						)
 					)
-		for result in self.results:
-			print(result['fitness'])
+		# for result in self.results:
+		# 	print(result['fitness'])
 		self.results = []
 
 	def mutation(self):
